@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emeritus Latam</title>
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #cerrarChatbot {
+            position: absolute;
+            top: 75px;
+            right: 17px;
+            cursor: pointer;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            padding: 0;
+        }
+
+        #cerrarChatbot:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img class="mock" src="images\mockup.png" alt="Mockup de página larga">
+    </div>
+
+    <div id="contenedor-chatbot" style="display: none;">
+        <iframe src="https://chatbotemeritus01.pythonanywhere.com/" class="chatbot"></iframe>
+        <button id="cerrarChatbot" onclick="toggleChatbot()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div id="chatbotIcon" onclick="toggleChatbot()">
+        <img src="images\burbuja-de-dialogo_2.png" alt="Chatbot" width="100" height="100">
+    </div>
+</body>
+
+<script>
+    // Funciones para controlar el carrusel
+    const carouselInner = document.querySelector('.carousel-inner');
+    const prevBtn = document.querySelector('.carousel-control.prev');
+    const nextBtn = document.querySelector('.carousel-control.next');
+
+    let currentIndex = 0;
+    const itemCount = carouselInner.children.length;
+
+    function moveCarousel(direction) {
+        if (direction === 'prev') {
+            currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+        } else {
+            currentIndex = (currentIndex + 1) % itemCount;
+        }
+        carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => moveCarousel('prev'));
+    nextBtn.addEventListener('click', () => moveCarousel('next'));
+</script>
+
+<script>
+    function toggleChatbot() {
+        var chatbotContainer = document.getElementById('contenedor-chatbot');
+        var chatbotIcon = document.getElementById('chatbotIcon');
+        if (chatbotContainer.style.display === 'none') {
+            chatbotContainer.style.display = 'block';
+            chatbotIcon.style.display = 'none';
+        } else {
+            chatbotContainer.style.display = 'none';
+            chatbotIcon.style.display = 'block';
+        }
+    }
+</script>
+
+</html>
